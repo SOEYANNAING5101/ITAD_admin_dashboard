@@ -4,7 +4,7 @@ import awsConfig from "./aws-exports";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import Dashboard from "./pages/Dashboard";
 
-Amplify.configure(awsConfig); // Ensure AWS Amplify is configured properly
+Amplify.configure(awsConfig);
 
 function App({ signOut, user }) {
     return (
