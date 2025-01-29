@@ -10,12 +10,6 @@ function Dashboard() {
     const [quantity, setQuantity] = useState("");
     const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        Auth.currentAuthenticatedUser()
-            .then(setUser)
-            .catch(() => (window.location.href = "/login"));
-    }, []);
-
     // Fetch stock data from API Gateway
     useEffect(() => {
         axios.get(`${API_URL}/get-stock`)

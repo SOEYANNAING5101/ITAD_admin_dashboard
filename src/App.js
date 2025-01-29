@@ -1,15 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Amplify } from "aws-amplify";
+import awsConfig from "./aws-exports";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import Dashboard from "./pages/Dashboard";
 
-function App() {
+Amplify.configure(awsConfig); // Ensure AWS Amplify is configured properly
+
+function App({ signOut, user }) {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Dashboard />} />
-            </Routes>
-        </Router>
+        <div>
+            <h1>Welcome, {user.username}!</h1>
+            <button onClick={signOut}>Sign Out</button>
+            <Dashboard />
+        </div>
     );
 }
 
-export default App;
+export default withAuthenticator(App);
