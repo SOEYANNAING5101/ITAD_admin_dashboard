@@ -8,6 +8,13 @@ function Dashboard() {
     const [stockData, setStockData] = useState([]);
     const [barcode, setBarcode] = useState("ITEM-1001");
     const [quantity, setQuantity] = useState("");
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        Auth.currentAuthenticatedUser()
+            .then(setUser)
+            .catch(() => (window.location.href = "/login"));
+    }, []);
 
     // Fetch stock data from API Gateway
     useEffect(() => {
